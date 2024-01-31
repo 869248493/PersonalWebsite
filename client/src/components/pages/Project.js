@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import Card from "../modules/Card.js";
 import { get } from "../../utilities";
 
-import project_bdnn from "../../../assets/project_bdnn.png";
-import project_excel from "../../../assets/project_excel.png";
-import project_maple from "../../../assets/project_maple.png";
-import project_website from "../../../assets/project_website.png";
+import project_bdnn from "../../public/project_bdnn.png";
+import project_excel from "../../public/project_excel.png";
+import project_maple from "../../public/project_maple.png";
+import project_website from "../../public/project_website.png";
 
 import "./Project.css";
 

@@ -1,6 +1,6 @@
 import React from "react";
-import smile from "../modules/assets/smile.png";
-import email from "../modules/assets/mail.png";
+import smile from "../../public/smile.png";
+import email from "../../public/mail.png";
 
 import "./Contact.css";
 

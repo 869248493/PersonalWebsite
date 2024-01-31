@@ -1,5 +1,5 @@
 import React from "react";
-import mycat from "../modules/assets/mycat.png";
+import mycat from "../../public/mycat.png";
 
 import "./About.css";
 import { Link } from "@reach/router";

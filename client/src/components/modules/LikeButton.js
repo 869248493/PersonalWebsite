@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import like from "./assets/like.png";
+import like from "../../../src/public/like.png";
 import "./LikeButton.css";
 
 import { post } from "../../utilities";
