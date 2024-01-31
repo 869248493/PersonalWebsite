@@ -5,7 +5,6 @@ import Home from "./pages/Home.js";
 import Project from "./pages/Project.js";
 import Contact from "./pages/Contact.js";
 import About from "./pages/About.js";
-import Test from "./pages/Test.js";
 import NotFound from "./pages/NotFound.js";
 
 import "../utilities.css";
@@ -20,7 +19,6 @@ const App = () => {
         <Project path="project" />
         <About path="about" />
         <Contact path="contact" />
-        <Test path="test" />
         <NotFound default />
       </Router>
     </div>

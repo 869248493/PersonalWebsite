@@ -1,8 +1,8 @@
 // define routes for server
 const express = require("express");
 
-const Like = require("./models/like");
-const Project = require("./models/project");
+const Like = require("../models/like");
+const Project = require("../models/project");
 
 // api end point: prefiexed with "/api/"
 const router = express.Router();
