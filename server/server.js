@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
-const api = require("./api");
+const api = require("../api");
 require("dotenv").config();
 
 /**
