@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
+
+:root {
+  --primary: #396dff;
+  --primary--dim: #6987db;
+  --darkgrey: #d4d4d4;
+  --grey: #f7f7f7;
+
+  --xs: 4px;
+  --s: 8px;
+  --m: 16px;
+  --l: 24px;
+}
+
+.u-flex {
+  display: flex;
+}
+
+.u-italic {
+  font-style: italic;
+}
+
+.u-bold {
+  font-weight: 600;
+}
+
+.u-link {
+  color: var(--black);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.u-linkBlue {
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.u-link:hover {
+  color: var(--primary--dim);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+.u-title {
+  font-weight: 600;
+  font-size: 60px;
+  padding-top: 20px;
+}
+
+.u-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 48px;
+}

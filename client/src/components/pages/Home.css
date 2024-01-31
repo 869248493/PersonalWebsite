@@ -1,0 +1,41 @@
+@import "keyframe.css";
+
+.Home-container {
+  height: 36em;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: var(--xs);
+  animation: fadeIn 1.2s ease forwards;
+}
+
+.Home-intro {
+  font-size: var(--l);
+}
+
+.Home-body {
+  padding-top: var(--s);
+  padding-bottom: 32px;
+}
+
+.Home-button {
+  padding: 12px;
+  border-style: solid;
+  border-radius: 12px;
+  border-color: black;
+  color: rgba(0, 0, 0, 0.765);
+  transition: background-color 1s;
+  text-decoration: none;
+}
+
+.Home-button:hover {
+  background-color: #db1f48;
+}
+
+.Home-button:focus,
+.Home-button:active {
+  background-color: black;
+  transition: none;
+}

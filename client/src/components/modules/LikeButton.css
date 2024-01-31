@@ -1,0 +1,14 @@
+.like_button {
+  display: inline-block;
+  border-style: solid;
+  text-align: center;
+}
+
+.like_button:hover {
+  border-color: rgba(127, 255, 212, 0.664);
+  cursor: pointer;
+}
+
+.like_img {
+  padding-right: 4px;
+}

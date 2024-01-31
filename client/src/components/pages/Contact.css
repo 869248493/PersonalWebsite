@@ -1,0 +1,18 @@
+.Contact-content {
+  width: 60em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.Contact-mail {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+  padding: 100px 100px;
+}
+
+.mail:hover {
+  background-color: aquamarine;
+  cursor: pointer;
+}

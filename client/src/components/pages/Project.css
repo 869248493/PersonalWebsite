@@ -1,0 +1,28 @@
+@import "keyframe.css";
+
+.Project-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 48px;
+}
+
+.Project-cards {
+  display: flex;
+  flex: 1 0 25%;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 48px;
+  animation: slideIn 0.8s ease forwards;
+}
+
+.Project-card {
+  border-radius: 8%;
+  background-color: var(--grey);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Project-card:hover {
+  transform: translateY(-8px); /* Move the element up by 5 pixels on hover */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}

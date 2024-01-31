@@ -1,0 +1,46 @@
+.NavBar-container {
+  display: flex;
+  justify-content: flex-end;
+  font-size: var(--m);
+  gap: 28px;
+  font-family: "Open Sans", sans-serif;
+  margin: 32px 32px 12px 32px;
+  font-weight: bold;
+}
+
+/* .NavBar-link {
+  flex-grow: 1;
+  max-width: 120px;
+} */
+
+.NavBar-link,
+.NavBar-home {
+  flex-grow: 1;
+  max-width: 120px;
+
+  border-style: solid;
+  border: 1px;
+  border-radius: 10px;
+
+  color: rgb(0, 0, 0);
+  opacity: 0.8;
+  text-decoration: none;
+  text-align: center;
+
+  padding: var(--m);
+
+  transition: background-color 0.4s ease, text-decoration 0.4s ease;
+}
+
+.NavBar-link:hover,
+.NavBar-home:hover {
+  background-color: var(--darkgrey);
+  text-decoration: underline;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.NavBar-home,
+.NavBar-home:visited {
+  margin-right: auto;
+}
