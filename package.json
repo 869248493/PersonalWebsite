@@ -3,7 +3,7 @@
   "scripts": {
     "hotloader": "webpack serve --config ./webpack.config.js --mode development --port 5050",
     "start": "nodemon",
-    "build": "webpack"
+    "build": "webpack build --output client/dist"
   },
   "dependencies": {
     "@reach/router": "^1.3.4",
