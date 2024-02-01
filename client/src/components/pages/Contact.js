@@ -12,7 +12,7 @@ const Contact = () => {
         <img src={smile} />
         <div className="Contact-mail">
           <div className="u-bold">Feel free to email me!</div>
-          <a id="emailMe" href="wanyunze@gmail.com">
+          <a id="emailMe" href="mailto:wanyunze@gmail.com">
             <img className="mail" src={email} />
           </a>
         </div>
