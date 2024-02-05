@@ -32,9 +32,8 @@ const Project = () => {
 
   if (hasProjects) {
     projectsList = projects.map((projectObj) => (
-      <div className="Project-card">
+      <div className="Project-card" key={`Card_${projectObj._id}`}>
         <Card
-          key={`Card_${projectObj._id}`}
           _id={projectObj._id}
           project_name={projectObj.project_name}
           project_description={projectObj.project_description}

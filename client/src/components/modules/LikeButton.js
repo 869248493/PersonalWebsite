@@ -15,8 +15,10 @@ const Like = (props) => {
       className="like_button"
       onClick={() => {
         const body = { parent: props.parent };
-        props.addLike();
-        post("/api/like", body).then(() => {});
+        if (props.like_nums < 100) {
+          props.addLike();
+          post("/api/like", body).then(() => {});
+        }
       }}
     >
       <img className="like_img" src={like} />

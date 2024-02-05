@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { drawCanvas } from "../../../canvasManager";
-import { Graph } from "../../graph/graph";
+import { Graph } from "../../graph/Graph";
 
 import "./Visualiser.css";
 
@@ -26,6 +26,16 @@ const Visualiser = (props) => {
     </button>
   );
 
+  const verifyButton = (
+    <button
+      onClick={() => {
+        console.log("Verifying");
+      }}
+    >
+      Verify Your Solution
+    </button>
+  );
+
   const solveButton = (
     <button
       onClick={() => {
@@ -47,7 +57,11 @@ const Visualiser = (props) => {
   return (
     <>
       <div className="Visual-menu">
+        <div className="Visual-title u-bold">
+          Maximise Profit For Resturant Chain (Work In Progress)
+        </div>
         {regenerateButton}
+        {verifyButton}
         {solveButton}
         {difficultySelect}
       </div>
