@@ -17,6 +17,9 @@ const NavBar = () => {
       <Link to="/contact/" className="NavBar-link">
         CONTACT
       </Link>
+      <Link to="/visualiser/" className="NavBar-link">
+        Algorithm Visualiser
+      </Link>
     </nav>
   );
 };

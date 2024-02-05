@@ -6,6 +6,7 @@ import Project from "./pages/Project.js";
 import Contact from "./pages/Contact.js";
 import About from "./pages/About.js";
 import NotFound from "./pages/NotFound.js";
+import Visualiser from "./pages/Visualiser.js";
 
 import "../utilities.css";
 import "./App.css";
@@ -19,6 +20,7 @@ const App = () => {
         <Project path="project" />
         <About path="about" />
         <Contact path="contact" />
+        <Visualiser path="visualiser" />
         <NotFound default />
       </Router>
     </div>
