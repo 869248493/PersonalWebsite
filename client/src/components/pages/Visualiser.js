@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { drawCanvas } from "../../../canvasManager";
-import { Graph } from "../../graph/Graph";
+import { Graph } from "../../graph/graph";
 import { MinimumSpanningTree } from "../../graph/mst";
 
 import "./Visualiser.css";

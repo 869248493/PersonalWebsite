@@ -48,20 +48,6 @@ const drawGraph = (context, graph) => {
     context.lineTo(res.endpoint2.x, res.endpoint2.y);
     context.stroke();
   });
-  //   const v_t = graph_dict.vertices[0];
-  //   const v_t_2 = graph_dict.vertices[1];
-  //   let res = getLineEndpoints(
-  //     v_t.x,
-  //     v_t.y,
-  //     v_t.radius,
-  //     v_t_2.x,
-  //     v_t_2.y,
-  //     v_t.radius
-  //   );
-  //   context.beginPath();
-  //   context.moveTo(res.endpoint1.x, res.endpoint1.y);
-  //   context.lineTo(res.endpoint2.x, res.endpoint2.y);
-  //   context.stroke();
 };
 
 export const drawCanvas = (canvasRef, graph) => {
