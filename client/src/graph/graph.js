@@ -1,5 +1,6 @@
-// unweighted undirected acylic graph
+import { Vertex } from "./Vertex";
 
+// unweighted undirected acylic graph
 export class Graph {
   /**
    * @param {canvas width} max_width
@@ -67,40 +68,14 @@ export class Graph {
     const collision_distance = r + gap;
 
     for (const vertex of this.vertices) {
-      const dx = vertex.get_x() - x;
-      const dy = vertex.get_y() - y;
+      const pos = vertex.get_pos();
+      const dx = pos.x - x;
+      const dy = pos.y - y;
       if (Math.sqrt(dx * dx + dy * dy) < collision_distance) {
         return true;
       }
     }
     return false;
-  }
-}
-
-class Vertex {
-  constructor(v_id, radius, x = 0, y = 0) {
-    this.id = v_id;
-    this.neighbours = [];
-    this.edges = [];
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-  }
-  //   set_pos() {}
-
-  get_x() {
-    return this.x;
-  }
-
-  get_y() {
-    return this.y;
-  }
-
-  add_neighbour(neighbour) {
-    this.neighbours.push(neighbour);
-  }
-  update_neighbour(neighbours) {
-    //TODO
   }
 }
 
