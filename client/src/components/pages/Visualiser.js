@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { drawCanvas } from "../../../canvasManager";
 import { Graph } from "../../graph/graph";
 import { MinimumSpanningTree } from "../../graph/mst";
@@ -7,23 +7,38 @@ import "./Visualiser.css";
 
 const MAX_WIDTH = window.innerWidth;
 const MAX_HEIGHT = window.innerHeight;
+const VERTEX_RADIUS = 20;
+const DIFFICULTY_DICT = { easy: 4, normal: 8, hard: 16 };
 
 const Visualiser = (props) => {
   const canvasRef = useRef(null);
+  const [difficulty, setDifficulty] = useState(DIFFICULTY_DICT.easy);
+  const [graph, setGraph] = useState(null);
 
   useEffect(() => {
-    let graph = new Graph(MAX_WIDTH, MAX_HEIGHT, 20);
-    graph.gen_random(16);
-    let mst = new MinimumSpanningTree(graph);
+    newGraph(difficulty);
+  }, [difficulty]);
+
+  useEffect(() => {
+    if (graph && canvasRef.current) {
+      const ctx = canvasRef.current.getContext("2d");
+      ctx.clearRect(0, 0, MAX_WIDTH, window.innerHeight);
+      drawCanvas(canvasRef, graph);
+    }
+  }, [graph]);
+
+  const newGraph = (difficulty) => {
+    let new_graph = new Graph(MAX_WIDTH, MAX_HEIGHT, VERTEX_RADIUS);
+    new_graph.gen_random(difficulty);
+    let mst = new MinimumSpanningTree(new_graph);
     mst.gen_edges();
-    console.log(graph.get_graph());
-    drawCanvas(canvasRef, graph);
-  }, []);
+    setGraph(new_graph);
+  };
 
   const regenerateButton = (
     <button
       onClick={() => {
-        console.log("Regenerating");
+        newGraph(difficulty);
       }}
     >
       Regenerate Graph
@@ -33,6 +48,7 @@ const Visualiser = (props) => {
   const verifyButton = (
     <button
       onClick={() => {
+        // TODO
         console.log("Verifying");
       }}
     >
@@ -42,6 +58,7 @@ const Visualiser = (props) => {
 
   const solveButton = (
     <button
+      // TODO
       onClick={() => {
         console.log("Solving");
       }}
@@ -51,10 +68,15 @@ const Visualiser = (props) => {
   );
 
   const difficultySelect = (
-    <select id="Visual-select">
-      <option value="">Easy</option>
-      <option value="dog">Normal</option>
-      <option value="cat">Hard</option>
+    <select
+      id="Visual-select"
+      onChange={(event) => {
+        setDifficulty(event.target.value);
+      }}
+    >
+      <option value={DIFFICULTY_DICT.easy}>Easy</option>
+      <option value={DIFFICULTY_DICT.normal}>Normal</option>
+      <option value={DIFFICULTY_DICT.hard}>Hard</option>
     </select>
   );
 
