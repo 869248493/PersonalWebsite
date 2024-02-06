@@ -9,7 +9,7 @@ import project_website from "../../public/project_website.png";
 
 import "./Project.css";
 
-// a bit hard coded by now, migrate to database using GridFS when have time
+// TODO: a bit hard coded by now, migrate to database using GridFS when have time
 const projectScreenshots = {
   "Maplestory & Discord Bot": project_maple,
   "Bidrectional Neural Network": project_bdnn,

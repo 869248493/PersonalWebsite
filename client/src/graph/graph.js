@@ -1,3 +1,5 @@
+// unweighted undirected acylic graph
+
 export class Graph {
   /**
    * @param {canvas width} max_width
@@ -26,7 +28,7 @@ export class Graph {
       // min distance from boundary
       const min_dist = this.v_radius + this.get_gap();
 
-      // TODO: define max range from previous vertex
+      // TODO: ? define max range from previous vertex
       while (is_collision) {
         x_pos = Math.floor(
           min_dist + (this.max_width - 2 * min_dist) * Math.random()
@@ -39,14 +41,24 @@ export class Graph {
       let v_i = new Vertex(i, this.v_radius, x_pos, y_pos);
       this.vertices.push(v_i);
     }
-
-    this.vertices.forEach((vertex) => {
-      console.log(vertex.x);
-    });
   }
 
   get_graph() {
-    return { verticies: this.vertices, edges: this.edges };
+    return { vertices: this.vertices, edges: this.edges };
+  }
+
+  set_graph(graph_dict) {
+    this.vertices = graph_dict.vertices;
+    this.edges = graph_dict.edges;
+  }
+
+  add_undirected_edge(v_source, v_destination, update_neighbour = true) {
+    const edge = new Edge(v_source, v_destination);
+    this.edges.push(edge);
+    if (update_neighbour) {
+      v_source.add_neighbour(v_destination);
+      v_destination.add_neighbour(v_source);
+    }
   }
 
   #check_collision(x, y) {
@@ -54,9 +66,6 @@ export class Graph {
     const gap = this.get_gap();
     const collision_distance = r + gap;
 
-    // check for boundary collision
-
-    // check for collision with other circles
     for (const vertex of this.vertices) {
       const dx = vertex.get_x() - x;
       const dy = vertex.get_y() - y;
@@ -77,7 +86,7 @@ class Vertex {
     this.y = y;
     this.radius = radius;
   }
-  set_pos() {}
+  //   set_pos() {}
 
   get_x() {
     return this.x;
@@ -86,11 +95,26 @@ class Vertex {
   get_y() {
     return this.y;
   }
+
+  add_neighbour(neighbour) {
+    this.neighbours.push(neighbour);
+  }
+  update_neighbour(neighbours) {
+    //TODO
+  }
 }
 
-class Edge {
-  constructor(v_start, v_end) {
-    this.v_start = v_start;
-    this.v_end = v_end;
+export class Edge {
+  constructor(v_source, v_destination) {
+    this.v_source = v_source;
+    this.v_destination = v_destination;
+  }
+
+  get_source() {
+    return this.v_source;
+  }
+
+  get_destination() {
+    return this.v_destination;
   }
 }

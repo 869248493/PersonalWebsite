@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { drawCanvas } from "../../../canvasManager";
 import { Graph } from "../../graph/Graph";
+import { MinimumSpanningTree } from "../../graph/mst";
 
 import "./Visualiser.css";
 
@@ -11,8 +12,11 @@ const Visualiser = (props) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const graph = new Graph(MAX_WIDTH, MAX_HEIGHT, 20);
+    let graph = new Graph(MAX_WIDTH, MAX_HEIGHT, 20);
     graph.gen_random(16);
+    let mst = new MinimumSpanningTree(graph);
+    mst.gen_edges();
+    console.log(graph.get_graph());
     drawCanvas(canvasRef, graph);
   }, []);
 
