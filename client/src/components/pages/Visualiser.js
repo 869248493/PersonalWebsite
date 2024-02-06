@@ -8,6 +8,7 @@ import "./Visualiser.css";
 const MAX_WIDTH = window.innerWidth;
 const MAX_HEIGHT = window.innerHeight;
 const VERTEX_RADIUS = 20;
+const DISPLAY_DY = 20;
 const DIFFICULTY_DICT = { easy: 4, normal: 8, hard: 16 };
 
 const Visualiser = (props) => {
@@ -19,19 +20,23 @@ const Visualiser = (props) => {
 
   // TODO: ? implement if there are more things to click
   //   let clickableObjects = { vertices: [] };
+
   useEffect(() => {
     newGraph(difficulty);
   }, [difficulty]);
 
   useEffect(() => {
     if (graph && canvasRef.current) {
+      // draw canvas upon mount
       const ctx = canvasRef.current.getContext("2d");
       ctx.clearRect(0, 0, MAX_WIDTH, window.innerHeight);
       drawCanvas(canvasRef, graph);
+      // add listeners for interactability
       canvasRef.current.addEventListener("click", handleCanvasClick);
       canvasRef.current.addEventListener("mousemove", handleMouseMove);
     }
     return () => {
+      // teardown
       if (canvasRef.current) {
         canvasRef.current.removeEventListener("click", handleCanvasClick);
         canvasRef.current.removeEventListener("mousemove", handleMouseMove);
@@ -42,6 +47,7 @@ const Visualiser = (props) => {
   /**
    * helper func
    */
+
   const newGraph = (difficulty) => {
     let new_graph = new Graph(MAX_WIDTH, MAX_HEIGHT, VERTEX_RADIUS);
     new_graph.gen_random(difficulty);
@@ -50,37 +56,40 @@ const Visualiser = (props) => {
     setGraph(new_graph);
   };
 
-  const handleCanvasClick = (event) => {
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    let found_clickable = false;
-    // Iterate through the graph nodes and check if the click point is within the
-    for (let vertex of graph.vertices) {
-      const dx = x - vertex.x;
-      const dy = y - vertex.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance <= VERTEX_RADIUS) {
-        console.log(vertex.id);
-        found_clickable = true;
-        setClickedVertex(vertex);
-      }
-    }
-    if (!found_clickable) {
-      setClickedVertex(null);
-    }
+  const isInCircleRange = (x, y, target_x, target_y, radius) => {
+    let dx = x - target_x;
+    let dy = y - target_y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    return distance <= radius ? true : false;
   };
-  const handleMouseMove = (event) => {
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
 
+  const findMousePos = (event) => {
+    const rect = canvasRef.current.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    return { x: x, y: y };
+  };
+
+  /**
+   *  handle user input
+   */
+
+  const handleCanvasClick = (event) => {
+    const { x, y } = findMousePos(event);
+    const clickedVertex = graph.vertices.find((vertex) => {
+      const { x: v_x, y: v_y } = vertex.get_pos();
+      return isInCircleRange(x, y, v_x, v_y, VERTEX_RADIUS);
+    });
+
+    setClickedVertex(clickedVertex);
+  };
+
+  const handleMouseMove = (event) => {
+    const { x, y } = findMousePos(event);
     setIsHoveringClickable(
       graph.vertices.some((vertex) => {
-        const pos = vertex.get_pos();
-        const dx = x - pos.x;
-        const dy = y - pos.y;
-        return Math.sqrt(dx * dx + dy * dy) <= VERTEX_RADIUS;
+        const { x: v_x, y: v_y } = vertex.get_pos();
+        return isInCircleRange(x, y, v_x, v_y, VERTEX_RADIUS);
       })
     );
   };
@@ -132,7 +141,9 @@ const Visualiser = (props) => {
       <option value={DIFFICULTY_DICT.hard}>Hard</option>
     </select>
   );
-
+  /**
+   * return
+   */
   return (
     <>
       <div className="Visual-menu">
@@ -152,10 +163,10 @@ const Visualiser = (props) => {
       />
       {clickedVertex && (
         <div
-          className="menu-window"
+          className="display-window"
           style={{
             position: "absolute",
-            top: clickedVertex.get_y() + 20,
+            top: clickedVertex.get_y() + DISPLAY_DY,
             left: clickedVertex.get_x(),
           }}
         >
