@@ -5,8 +5,11 @@ export class Vertex extends Clickable {
     super(x, y);
     this.id = v_id;
     this.neighbours = [];
-    this.edges = [];
     this.radius = radius;
+  }
+
+  get_id() {
+    return this.id;
   }
 
   add_neighbour(neighbour) {

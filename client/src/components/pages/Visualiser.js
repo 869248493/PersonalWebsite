@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { drawCanvas } from "../../../canvasManager";
 import { Graph } from "../../graph/graph";
-import { MinimumSpanningTree } from "../../graph/mst";
+import { RandomSpanningTree } from "../../graph/RST";
 
 import "./Visualiser.css";
 
@@ -51,8 +51,8 @@ const Visualiser = (props) => {
   const newGraph = (difficulty) => {
     let new_graph = new Graph(MAX_WIDTH, MAX_HEIGHT, VERTEX_RADIUS);
     new_graph.gen_random(difficulty);
-    let mst = new MinimumSpanningTree(new_graph);
-    mst.gen_edges();
+    let rst = new RandomSpanningTree(new_graph);
+    rst.initialise_rst();
     setGraph(new_graph);
   };
 

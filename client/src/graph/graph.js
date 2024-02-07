@@ -77,6 +77,8 @@ export class Graph {
     }
     return false;
   }
+
+  dfs() {}
 }
 
 export class Edge {
